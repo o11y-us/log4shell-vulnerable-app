@@ -8,4 +8,5 @@ FROM openjdk:8u181-jdk-alpine
 EXPOSE 8080
 RUN mkdir /app
 COPY --from=builder /home/gradle/src/build/libs/*.jar /app/spring-boot-application.jar
+COPY --from=builder /home/gradle/log4j2.xml /app/log4j2.xml
 CMD ["java","-Dlog4j2.configurationFile=/app/log4j2.xml", "-jar", "/app/spring-boot-application.jar"]
